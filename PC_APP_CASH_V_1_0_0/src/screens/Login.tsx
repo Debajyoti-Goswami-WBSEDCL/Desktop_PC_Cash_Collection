@@ -1,25 +1,40 @@
 import React from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 import styles from "./Login.styles";
-import axios from 'axios';
-const URL = 'http://vsmobappdev.wbsedcl.in/testSafety/testSafety';
+import api from '../utils/api'
+
+const encrypt = (message, separator) => {
+    return message+ separator;
+};
 
 const handleButtonClick = async () => {
-    console.log('inside handleButtonClick');
+    console.log('inside handleButtonClick()');
     alert('handleButtonClick started');
+  
     try {
-        const response = await axios.post(URL, {
-            pageNm: 'LOGIN', 
-            userAgent: 'abcd'
-        });
-
-        console.log('Server Reached: '+ response);
+      const response = await api.post('', {
+        userAgent: 'android',
+        pageNm: 'LOGIN',
+        app_type: 'web',
+        app_ver: '',
+        User: encrypt('90012775', '@'),
+        Pwd: encrypt('Bongaon1$', '?'),
+      });
+  
+      console.log('✅ Response Data:', JSON.stringify(response));
+    } catch (error) {
+      console.log('❌ Login Error:', error);
+  
+      if (error) {
+        console.log('❌ Status:', error);
+        console.log('❌ Data:', error);
+      } else {
+        console.log('❌ Network/Other Error:', error);
+      }
     }
-    catch(error){
-        console.log('Login Error: '+ error);
-    }
+  
     alert('handleButtonClick ended');
-};
+  };
 
 const Login = () => {
   return (
