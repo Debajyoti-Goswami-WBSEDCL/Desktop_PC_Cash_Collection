@@ -2,9 +2,23 @@ import React from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 import styles from "./Login.styles";
 import axios from 'axios';
+const URL = 'http://vsmobappdev.wbsedcl.in/testSafety/testSafety';
 
-const handleButtonClick = () => {
-    alert('button clicked');
+const handleButtonClick = async () => {
+    console.log('inside handleButtonClick');
+    alert('handleButtonClick started');
+    try {
+        const response = await axios.post(URL, {
+            pageNm: 'LOGIN', 
+            userAgent: 'abcd'
+        });
+
+        console.log('Server Reached: '+ response);
+    }
+    catch(error){
+        console.log('Login Error: '+ error);
+    }
+    alert('handleButtonClick ended');
 };
 
 const Login = () => {
