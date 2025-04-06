@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './src/screens/Login';
+
+const Stack =  createNativeStackNavigator();
 
 const MyApp = () => {
   return (
-    <View>
-      <Text style = {{color: 'red', fontSize: 50,}}>
-        Hello World
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName = "Login">
+        <Stack.Screen name = "Login" component = {Login} /> 
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
