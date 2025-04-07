@@ -1,3 +1,4 @@
+/*
 package com.pc_app_cash_v_1_0_0;
 
 import android.content.Context;
@@ -27,3 +28,4 @@ public class ReactNativeFlipper {
 
 initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
+*/
