@@ -65,6 +65,7 @@ const handleButtonClick = async () => {
 const Login = () => {
     const [userId, setUserId] = useState('');
     const [isBttnDisabled, setIsBttnDisabled] = useState(true);
+    const [errorText, setErrorText] = useState('');
 
     const isUserValid = () => {
         return userId.length === 8 && userId[0] === '9';
@@ -76,7 +77,11 @@ const Login = () => {
 
     useEffect(
 		() => {
-		setIsBttnDisabled(!correctUserIdPwd());
+            setErrorText(
+                !isUserValid() ? 'Provide Correct User ID': ''
+            )
+
+		    setIsBttnDisabled(!correctUserIdPwd());
 		}, [userId]
 	);
 
@@ -114,6 +119,9 @@ const Login = () => {
                 <View style={styles.buttonWrapper}>
                     <Button title="Request OTP" onPress={handleButtonClick} disabled = {isBttnDisabled} />
                 </View>
+
+                {errorText ?
+                <Text>{errorText}</Text>: null}
             </View>
         </View>
     );
