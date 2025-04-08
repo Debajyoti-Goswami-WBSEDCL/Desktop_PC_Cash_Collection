@@ -1,12 +1,13 @@
 import axios from 'axios';
-const URL = 'https://vsmobappdev.wbsedcl.in/testSafety/testSafety';
+const URL = 'https://vsmobappdev.wbsedcl.in';
 
 const api = axios.create({
     baseURL: URL,
     timeout: 5000,
-    headers: {
-        'Content-Type': 'application/json'
-    }, 
+    /*headers: {
+        //'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }, */
 });
 
 //Interceptors for logging (Flipper or console)
