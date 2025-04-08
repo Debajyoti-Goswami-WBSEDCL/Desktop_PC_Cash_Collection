@@ -45,25 +45,40 @@ const handleButtonClick = async () => {
         console.log('[MY APP] ✅ Status Code: ', response.status);
         console.log('[MY APP] ✅ Response Data: ', response.data);
         console.log('[MY APP] Full Response: ', JSON.stringify(response));
-    } 
+    }
     catch (error) {
         console.log('❌ Login Error:', error);
-    
+
         if (error) {
-          console.log('❌ Status:', error);
-          console.log('❌ Error Data:', error);
+            console.log('❌ Status:', error);
+            console.log('❌ Error Data:', error);
         } else if (error) {
-          console.log('❌ No response received:', error);
+            console.log('❌ No response received:', error);
         } else {
-          console.log('❌ Unexpected Error:', error);
+            console.log('❌ Unexpected Error:', error);
         }
-      }
+    }
 
     alert('handleButtonClick ended');
 };
 
 const Login = () => {
+    const [userId, setUserId] = useState('');
     const [isBttnDisabled, setIsBttnDisabled] = useState(true);
+
+    const isUserValid = () => {
+        return userId.length === 8 && userId[0] === '9';
+    }
+
+    const correctUserIdPwd = () => {
+        return isUserValid();
+    }
+
+    useEffect(
+		() => {
+		setIsBttnDisabled(!correctUserIdPwd());
+		}, [userId]
+	);
 
     return (
         <View style={styles.container}>
@@ -82,7 +97,7 @@ const Login = () => {
                 {/* User ID section */}
                 <View style={styles.inputRow}>
                     <Text style={styles.label}>Username:</Text>
-                    <TextInput style={styles.input} placeholder="ERP ID" />
+                    <TextInput style={styles.input} placeholder="ERP ID" onChangeText={(text)=> setUserId(text)} value= {userId}/>
                 </View>
 
                 {/* Password section */}
@@ -97,7 +112,7 @@ const Login = () => {
 
                 {/* Submit button */}
                 <View style={styles.buttonWrapper}>
-                    <Button title="Request OTP" onPress={handleButtonClick} disabled = {isBttnDisabled}/>
+                    <Button title="Request OTP" onPress={handleButtonClick} disabled = {isBttnDisabled} />
                 </View>
             </View>
         </View>
