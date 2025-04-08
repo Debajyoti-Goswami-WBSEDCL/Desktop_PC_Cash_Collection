@@ -78,7 +78,8 @@ const Login = () => {
     useEffect(
 		() => {
             setErrorText(
-                !isUserValid() ? 'Provide Correct User ID': ''
+                !isUserValid() ? 
+                userId.length!== 0 ? 'Provide Correct User ID': '' : ''
             )
 
 		    setIsBttnDisabled(!correctUserIdPwd());
@@ -121,7 +122,7 @@ const Login = () => {
                 </View>
 
                 {errorText ?
-                <Text>{errorText}</Text>: null}
+                <Text style= {styles.error}>{errorText}</Text>: null}
             </View>
         </View>
     );
