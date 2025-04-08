@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 import styles from "./Login.styles";
 import api from '../utils/api'
@@ -62,6 +63,8 @@ const handleButtonClick = async () => {
 };
 
 const Login = () => {
+    const [isBttnDisabled, setIsBttnDisabled] = useState(true);
+
     return (
         <View style={styles.container}>
             {/* Company Logo */}
@@ -94,7 +97,7 @@ const Login = () => {
 
                 {/* Submit button */}
                 <View style={styles.buttonWrapper}>
-                    <Button title="Request OTP" onPress={handleButtonClick} />
+                    <Button title="Request OTP" onPress={handleButtonClick} disabled = {isBttnDisabled}/>
                 </View>
             </View>
         </View>
